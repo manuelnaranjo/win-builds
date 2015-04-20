@@ -94,6 +94,17 @@ let do_adds builder =
       ]
   in
 
+  let bzip2 = add ("bzip2", None)
+      ~dir:"slackware64-current/a"
+      ~dependencies: []
+      ~version:"1.0.6"
+      ~build:1
+      ~sources:[
+      "bzip2-${VERSION}.tar.gz", "3f89f861209ce81a6bab1fd1998c0ef311712002";
+      ]
+  in
+
+
   let lua ~variant ~dependencies =
     add ("lua", Some variant)
       ~dir:"slackbuilds.org/development"
@@ -1191,6 +1202,7 @@ let do_adds builder =
         json_c;
         qt;
         check;
+        bzip2;
       ]
       ~version:"0.0.0"
       ~build:1
