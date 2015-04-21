@@ -64,6 +64,15 @@ let elementary = add ("elementary", None)
     Common.Source.elementary
   ]
 
+let python = add ("python", None)
+  ~dir:"slackbuilds.org/python"
+  ~dependencies: []
+  ~version:"2.7.5"
+  ~build:1
+  ~sources:[
+    "Python-2.7.5.tar.xz", "b7389791f789625c2ba9d897aa324008ff482daf";
+  ]
+
 let qt = add ("qt", Some "native")
   ~dir:"slackware64-current/l"
   ~dependencies:[]
@@ -88,7 +97,7 @@ let qt = add ("qt", Some "native")
 
 let _all = add_full ("all", None)
   ~dir:""
-  ~dependencies:[ lua; qt; efl; elementary ]
+  ~dependencies:[ lua; qt; efl; elementary ; python ]
   ~version:"0.0.0"
   ~build:1
   ~sources:[]
