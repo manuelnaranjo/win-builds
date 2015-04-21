@@ -1185,6 +1185,37 @@ let do_adds builder =
         ]
     in
 
+
+    let _pdcurses = add ("PDCurses", None)
+      ~dir:"mingw"
+      ~dependencies:[]
+      ~version:"3.4"
+      ~build:1
+      ~sources:[
+        "${PACKAGE}-${VERSION}.tar.gz", "e36684442a6171cc3a5165c8c49c70f67db7288c";
+      ]
+    in
+
+    let readline = add ("readline", None)
+      ~dir:"slackware64-current/l"
+      ~dependencies:[ _pdcurses ]
+      ~version:"5.2"
+      ~build:1
+      ~sources:[
+        "${PACKAGE}-${VERSION}.tar.bz2", "";
+      ]
+    in
+
+    let python = add ("python", None )
+      ~dir:"slackbuilds.org/python"
+      ~dependencies:[ expat; libffi; bzip2; sqlite; zlib; openssl; readline ]
+      ~version:"2.7.5"
+      ~build:1
+      ~sources:[
+        "Python-2.7.5.tar.xz", "b7389791f789625c2ba9d897aa324008ff482daf";
+      ]
+    in
+
     add_full ("all", None)
       ~dir:""
       ~dependencies:[
@@ -1239,26 +1270,6 @@ let do_adds builder =
       ]
     in
 
-    let _pdcurses = add ("PDCurses", None)
-      ~dir:"mingw"
-      ~dependencies:[]
-      ~version:"3.4"
-      ~build:1
-      ~sources:[
-        "${PACKAGE}-${VERSION}.tar.gz", "e36684442a6171cc3a5165c8c49c70f67db7288c";
-      ]
-    in
-
-    let _readline = add ("readline", None)
-      ~dir:"slackware64-current/l"
-      ~dependencies:[ _pdcurses ]
-      ~version:"5.2"
-      ~build:1
-      ~sources:[
-        "${PACKAGE}-${VERSION}.tar.bz2", "";
-      ]
-    in
-
     let _wineditline = add ("wineditline", None)
       ~dir:"mingw"
       ~dependencies:[]
@@ -1298,7 +1309,7 @@ let do_adds builder =
       ~sources:[]
       ~outputs:[]
 
-    (* 
+    (*
       let sdl:base = add ("sdl:base", None)
         ~dir:"# slackware64-current/l"
         ~dependencies:[]
